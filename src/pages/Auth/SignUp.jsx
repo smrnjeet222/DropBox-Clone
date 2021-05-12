@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { useAuth } from '~/store/AuthContext';
+import { useAuth } from '~/hooks/AuthContext';
 import AuthContainer from '~/container/AuthContainer';
 import { Link, useHistory } from 'react-router-dom';
 

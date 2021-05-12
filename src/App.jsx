@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import PrivateRoute from '~/container/PrivateRoute';
 import SignUp from '~/pages/Auth/SignUp'
-import Dashboard from '~/pages/Dashboard'
+import Home from '~/pages/Home'
 import Login from '~/pages/Auth/Login'
 import ForgotPassword from '~/pages/Auth/ForgotPassword';
 
-import { AuthProvider } from '~/store/AuthContext'
+import { AuthProvider } from '~/hooks/AuthContext'
 
 function App() {
 
@@ -14,10 +14,11 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Switch>
-          <PrivateRoute path="/" exact component={Dashboard} />
-          <Route path="/sign-up" exact component={SignUp} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/forgot-password" exact component={ForgotPassword} />
+          <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute exact path="/folder/:folderId" component={Home} />
+          <Route exact path="/sign-up" component={SignUp} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/forgot-password" component={ForgotPassword} />
         </Switch>
       </AuthProvider>
     </BrowserRouter>

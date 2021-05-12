@@ -10,6 +10,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
 
     const [curUser, setCurUser] = useState();
+    const [isAuthenticating, setIsAuthenticating] = useState(true);
 
     const signUp = (email, password) => {
         return auth.createUserWithEmailAndPassword(email, password)
@@ -29,7 +30,9 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
+            console.log(user?.toJSON());
             setCurUser(user);
+            setIsAuthenticating(false);
         })
         return unsubscribe;
         // return () => {
@@ -42,7 +45,7 @@ export function AuthProvider({ children }) {
 
     return (
         <AuthContext.Provider value={value}>
-            {children}
+            {!isAuthenticating && children}
         </AuthContext.Provider>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import AuthContainer from '~/container/AuthContainer';
-import { useAuth } from '~/store/AuthContext';
+import { useAuth } from '~/hooks/AuthContext';
 
 
 export default function ForgotPassword() {
