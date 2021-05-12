@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 import "firebase/auth"
+import "firebase/firestore"
 
 
 const firebaseConfig = {
@@ -12,7 +13,19 @@ const firebaseConfig = {
 };
 
 const app = firebase.initializeApp(firebaseConfig);
+const fs = app.firestore();
 
+export const db = {
+    folders: fs.collection('folders'),
+    files: fs.collection('files'),
+    getTime: firebase.firestore.FieldValue.serverTimestamp,
+    formatDoc: doc => {
+        return {
+            id: doc.id,
+            ...doc.data()
+        }
+    }
+}
 
 export const auth = app.auth();
 
