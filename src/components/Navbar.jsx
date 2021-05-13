@@ -18,11 +18,15 @@ export default function Navbar() {
   }
 
   return (
-    <div className="flex justify-between m-6">
-      <Link to="/"><h1>GOOGLE DRIVE</h1></Link>
-      <div className="flex">
-        <p>Profile</p>
-        <button className="ml-6 px-4 py-2 text-white bg-red-500"
+    <div className="flex justify-between items-center py-4 px-16 mb-8 bg-purple-400">
+      <Link to="/"
+        className="text-2xl font-black"
+      >
+        DumpBox
+      </Link>
+      <div className="flex items-center gap-6">
+        <p className="font-semibold">{curUser.email}</p>
+        <button className="ml-6 px-4 py-2 rounded text-white bg-red-500"
           onClick={handleLogOut}>
           Log Out
         </button>

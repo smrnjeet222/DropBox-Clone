@@ -25,19 +25,19 @@ export default function Home() {
       <Navbar />
       <div className="mx-auto w-3/4">
         <div className="flex justify-between">
-          <div className="flex gap-2 align-text-bottom">
+          <div className="flex gap-2 items-end">
             {path.map((d) => (
               <Link key={d.id}
                 to={{
                   pathname: d.id ? `/folder/${d.id}` : "/",
                   state: { folder: { ...folder, path: path.slice(1,) } }
                 }}
-                className="text-xl hover:text-indigo-600"
+                className="text-xl  hover:text-indigo-600"
               >
                 {d.name} /
               </Link>
             ))}
-            <h2 className="text-2xl"> {folder?.name} </h2>
+            <h2 className="text-2xl font-semibold"> {folder?.name} </h2>
 
           </div>
           <div>
@@ -47,6 +47,7 @@ export default function Home() {
         </div>
         <br />
         <br />
+        <h3 className="text-2xl mb-5">Folders :</h3>
         <div className="flex gap-5">
           {childFolders?.map(fldr => (
             <div key={fldr.id} >
@@ -55,11 +56,15 @@ export default function Home() {
           ))}
         </div>
         <br />
+        <br />
+        <h3 className="text-2xl mb-5">Files :</h3>
         <div className="flex gap-5">
           {childFiles?.map(fl => (
-            <div key={fl.id} >
-              <a href={fl.url} target="_blank">{fl.name}</a>
-            </div>
+            <a key={fl.id} href={fl.url} target="_blank"
+              className="border py-2 px-4 max-w-xs truncate bg-white"
+            >
+              {fl.name}
+            </a>
           ))}
         </div>
       </div>
