@@ -58,7 +58,7 @@ export default function Home() {
         <br />
         <br />
         <h3 className="text-2xl mb-5">Files :</h3>
-        <div className="flex gap-5">
+        <div className="flex gap-5 max-w-4xl flex-wrap">
           {childFiles?.map(fl => (
             <a key={fl.id} href={fl.url} target="_blank"
               className="border py-2 px-4 max-w-xs truncate bg-white"
