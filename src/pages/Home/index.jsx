@@ -7,6 +7,7 @@ import Folder from '../../components/Folder';
 import { useLocation, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { ROOT_FOLDER } from '../../hooks/useFolder';
+import AddFile from '../../components/AddFile';
 
 export default function Home() {
 
@@ -39,7 +40,10 @@ export default function Home() {
             <h2 className="text-2xl"> {folder?.name} </h2>
 
           </div>
-          <AddFolder currentFolder={folder} />
+          <div>
+            <AddFile currentFolder={folder} />
+            <AddFolder currentFolder={folder} />
+          </div>
         </div>
         <br />
         <br />
@@ -47,6 +51,14 @@ export default function Home() {
           {childFolders?.map(fldr => (
             <div key={fldr.id} >
               <Folder folder={fldr} />
+            </div>
+          ))}
+        </div>
+        <br />
+        <div className="flex gap-5">
+          {childFiles?.map(fl => (
+            <div key={fl.id} >
+              <a href={fl.url} target="_blank">{fl.name}</a>
             </div>
           ))}
         </div>

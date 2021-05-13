@@ -27,6 +27,11 @@ const reducer = (state, { type, payload }) => {
         ...state,
         childFolders: payload.childFolders,
       }
+    case "SET_CHILD_FILES":
+      return {
+        ...state,
+        childFiles: payload.childFiles,
+      }
     default:
       return state
   }
@@ -72,6 +77,19 @@ export function useFolder(folderId = null, folder = null) {
         dispatch({
           type: "SET_CHILD_FOLDERS",
           payload: { childFolders: snapshot.docs.map(db.formatDoc) },
+        })
+      })
+  }, [folderId, curUser])
+
+  useEffect(() => {
+    return db.files
+      .where("folderId", "==", folderId)
+      .where("userId", "==", curUser.uid)
+      .orderBy("createdAt")
+      .onSnapshot(snapshot => {
+        dispatch({
+          type: "SET_CHILD_FILES",
+          payload: { childFiles: snapshot.docs.map(db.formatDoc) },
         })
       })
   }, [folderId, curUser])
